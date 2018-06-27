@@ -138,22 +138,8 @@ var rules = [];
  */
 var alpha = new RegExp("[a-zA-Z0-9]+");
 
-/**
- * Description. JSON object to hold several properties.
- *
- * @author Sergio
- * 
- */
-var json = {
-    filename: [],
-    extension: [],
-    mainElement: [],
-    port: 3000,
-};
-
 // Looking for free port
 fp(3000, function (err, freePort) {
-    json.port = 3000;
 
     filename = process.argv[2];
     var array = process.argv[3].split(',');
@@ -185,7 +171,7 @@ fp(3000, function (err, freePort) {
             return console.error(err);
         }
         var index = data.toString()
-            .replace(new RegExp("3000", "g"), json.port)
+            .replace(new RegExp("3000", "g"), freePort)
             .replace(new RegExp("Dot", "g"), filename.charAt(0).toUpperCase() + filename.slice(1))
             .replace(new RegExp("dot", "g"), filename.toLowerCase());
 
@@ -240,7 +226,7 @@ fp(3000, function (err, freePort) {
         var index = data.toString()
             .replace(new RegExp("DOT", "g"), filename)
             .replace(new RegExp("graph", "g"), parser.ruleNames[0])
-            .replace(new RegExp("3000"), json.port);
+            .replace(new RegExp("3000"), freePort);
 
         fs.writeFile(nodePath + 'index.js', index, function (err) {
             if (err)
