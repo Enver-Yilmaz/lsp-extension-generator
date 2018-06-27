@@ -1,0 +1,20 @@
+{
+  "name": "io",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SergioFair/lsp-extension-generator"
+  },
+  "scripts": {},
+  "author": "SergioFair",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.7.1",
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "find-free-port": "^1.2.0",
+    "fs": "0.0.1-security",
+    "mkdirp": "^0.5.1"
+  }
+}
