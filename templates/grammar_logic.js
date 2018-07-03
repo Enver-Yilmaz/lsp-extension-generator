@@ -155,7 +155,7 @@ fp(3000, function (err, freePort) {
     console.log("Terminals identified on given grammar:");
     for (rule of parser.literalNames) {
         rule = rule.slice(1, -1);
-        if (alpha.test(rule) && !rules.includes(rule)){
+        if (alpha.test(rule) && !rules.includes(rule)) {
             rules.push(rule);
             console.log("> " + rule);
         }
@@ -282,7 +282,7 @@ fp(3000, function (err, freePort) {
             .replace(new RegExp("dot", "g"), filename.toLowerCase())
             .replace(new RegExp("DOT", "g"), filename)
             .replace(new RegExp("languageIdentifierForGrammar", "g"), filename.toLowerCase())
-            .replace(new RegExp("extensionForLanguage", "g"), "*." + extension.slice(1,-2));
+            .replace(new RegExp("extensionForLanguage", "g"), "*." + extension.slice(1, -2));
 
         fs.writeFile(clientPath + 'src/extension.ts', index, function (err) {
             if (err)
@@ -401,7 +401,7 @@ fp(3000, function (err, freePort) {
         });
     });
 
-    let homedir = process.platform === 'win32' ? process.env.APPDATA : os.homedir + "/.config" ;
+    let homedir = process.platform === 'win32' ? process.env.APPDATA : os.homedir + "/.config";
 
     fs.readFile(homedir + '/Code/User/settings.json', function (err, data) {
         if (err) {
@@ -409,7 +409,20 @@ fp(3000, function (err, freePort) {
         }
         var index = data.toString();
 
-        fs.writeFile(homedir + '/Code/User/settings.json', index + '{"window.zoomLevel": 0,"files.associations": {"*.ext": "cmm"}}', function (err) {
+
+        let left = "*." + extension.slice(1, -2);
+        let right = filename.toLowerCase();
+
+        //console.log(left);
+        //console.log(right);
+
+        var jsonText = JSON.parse(index.toString());
+
+        //console.log(jsonText);
+        jsonText["files.associations"][left] = right;
+
+        //fs.writeFile(homedir + '/Code/User/settings.json', '{"window.zoomLevel": 0,"files.associations": {"*.' + extension.slice(1,-2) + '": "' + filename.toLowerCase() + '"}}', function (err) {
+        fs.writeFile(homedir + '/Code/User/settings.json', JSON.stringify(jsonText), function (err) {
             if (err)
                 return console.error(err);
             console.log("File settings.json for language recognition updated");

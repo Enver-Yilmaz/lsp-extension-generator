@@ -116,10 +116,10 @@ connection.onInitialize((params): InitializeResult => {
 			// Tell the client that the server works in FULL text document sync mode
 			textDocumentSync: documents.syncKind,
 			// Tell the client that the server support code complete
-			completionProvider: {
+			/*completionProvider: {
 				resolveProvider: false,
 				"triggerCharacters": ['=']
-			},
+			},*/
 			hoverProvider: false
 		}
 	}
@@ -193,7 +193,7 @@ function validateDotDocument(textDocument: TextDocument): void {
 		for (var i = 0; i < messages.length && problems < maxNumberOfProblems; i++) {
 			problems++;
 
-			if (messages[i].length == 0)
+			if (messages[i].length == 0 && lines[i] !== undefined)
 				messages[i].length = lines[i].length - messages[i].character;
 
 			diagnostics.push({

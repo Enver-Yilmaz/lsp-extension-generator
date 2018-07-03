@@ -1,8 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "any",
-	"patterns": [
-		{
+	"patterns": [{
 			"include": "#keywords"
 		},
 		{
@@ -13,19 +12,21 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.any",
-				"match": "\\b(keywordsGoHere)\\b"
+				"match": "\\b(keywordsGoHere)\\b",
+				"settings": {
+					"foreground": "#dc3958",
+					"fontStyle": "bold underline"
+				}
 			}]
 		},
 		"strings": {
 			"name": "string.quoted.double.any",
 			"begin": "\"",
 			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.any",
-					"match": "\\\\."
-				}
-			]
+			"patterns": [{
+				"name": "constant.character.escape.any",
+				"match": "\\\\."
+			}]
 		}
 	},
 	"scopeName": "any.ext"
