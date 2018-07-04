@@ -335,6 +335,7 @@ fp(3000, function (err, freePort) {
         }
         var index = data.toString()
             .replace(new RegExp("Dot", "g"), filename.charAt(0).toUpperCase() + filename.slice(1))
+            .replace(new RegExp("extension-for-vscode", "g"), "extension-" + filename.toLowerCase())
             .replace(new RegExp(":dot", "g"), ":" + filename.toLowerCase())
             .replace(new RegExp("dot", "g"), filename.toLowerCase())
             .replace(new RegExp("DOT", "g"), filename.toUpperCase());
@@ -370,6 +371,7 @@ fp(3000, function (err, freePort) {
         }
         var index = data.toString()
             .replace(new RegExp("any", "g"), process.argv[2].toLowerCase())
+            .replace(new RegExp("colorizer\-name", "g"), "colorizer-" + filename.toLowerCase())
             .replace(new RegExp("\.ext\"", "g"), process.argv[3] + "\"");
 
         fs.writeFile('colorizer/package.json', index, function (err) {
@@ -412,9 +414,6 @@ fp(3000, function (err, freePort) {
 
         let left = "*." + extension.slice(1, -2);
         let right = filename.toLowerCase();
-
-        //console.log(left);
-        //console.log(right);
 
         var jsonText = JSON.parse(index.toString());
 
