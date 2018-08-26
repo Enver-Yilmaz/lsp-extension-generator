@@ -38,6 +38,3 @@ Once they are in the correct location, the IDE should be restarted for them to s
 | Feature | Version | Date |
 |--|--|--|
 | VSCode support | 1.0 | June 2018 |
-| IntelliJ support | 1.1 | September 2018 |
-| Eclipse support | 1.2 | December 2018 |
-| LSP all features & GUI | 2.0 | 1st semester 2019 |
